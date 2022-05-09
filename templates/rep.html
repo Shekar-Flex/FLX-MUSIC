@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Report</title>
+    <link rel="icon" href="{% static 'img/icons.png'%}" type="image/x-icon">
+    <style>
+        body{
+            background-color: cadetblue;
+        }
+        .header{
+            background-color: black;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 5px;
+        }
+        .title{
+            color: cadetblue;
+        }
+        #btn1{
+            background-color: black;
+            color: cadetblue;
+            font-weight: bold;
+        }
+        #btn1:hover{
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <div class="header">
+                <center>
+                    <h1 class="title">
+                        Flx Music Reporting
+                    </h1>
+                </center>
+            </div>
+            <br><br>
+        </center>
+        <center>
+            <!-- {% for message in messages %}
+                <div class="alert alert-{{messages.tags}} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong>{{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden=" true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %} -->
+            {%for message in messages%}
+                        <center>
+                            <div class="alert alert-success alert-dismissible d-flex align-items-center fade show">
+                                <i class="bi-check-circle-fill"></i>
+                                <strong class="mx-2">Success!</strong>{{message}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        </center>
+            {% endfor %}
+        </center>
+        <div class="center">
+            <center>
+                <form action="rep" method="post">
+                    {% csrf_token  %}
+                    <div class="form-group">
+                      <h3 >Title</h3>
+                      <input required name="title" class="form-control form-control-lg" type="text" placeholder="Title of Request"><br>
+                      <small class="form-text text-muted">Here you will write title of your Request</small>
+                    </div>
+                    <div class="form-group">
+                        <h3>Message</h3>
+                        <input required name="mess" class="form-control form-control-lg" type="text" placeholder="Message of Request"><br>
+                        <small class="form-text text-muted">Here you will write Message of your Request</small>
+                      </div>
+                      <br>
+                    <button type="submit" class="btn btn-primary" id="btn1">Submit</button>
+                  </form>
+                  <br>
+                  <br>
+                  <div class="home">
+                    <a href="/">
+                        <button type="button" class="btn btn-primary btn-lg" id="btn1">Home</button>
+                    </a>
+                </div>
+            </center>
+        </div>
+    </div>
+</body>
+</html>

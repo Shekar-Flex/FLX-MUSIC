@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Flx Music Player</title>
+    <link rel="icon" href="{% static 'img/icons.png'%}" type="image/x-icon">
+
+    <style>
+        body{
+            background-color: cadetblue;
+        }
+        .header{
+            background-color: black;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 5px;
+        }
+        .title{
+            color: cadetblue;
+        }
+        #btn1{
+            background-color: black;
+            color: cadetblue;
+            font-weight: bold;
+        }
+        #btn1:hover{
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <div class="header">
+                <center>
+                    <h1 class="title">
+                        Flx Music
+                    </h1>
+                </center>
+            </div>
+            <br><br>
+            <div class="stitle">
+                <h2>
+                    {{obj.title}}
+                </h2>
+            </div>
+            <br><br>
+            <div class="simage">
+                <div class="text-center">
+                    <img src="{{obj.image.url}}" class="rounded" alt="{{obj.title}}" width="50%" height="50%">
+                  </div>
+            </div>
+            <br>
+            <div class="saudio">
+                <audio controls autoplay>
+                    <source src="{{obj.audio.url}}" type="audio/mpeg">
+                  </audio>
+            </div>
+            <br><br>
+        </center>
+        <form action="play" method="post">
+            {% csrf_token  %}
+            <center>
+                    <button type="submit" class="btn btn-primary btn-lg" id="btn1">Play For Music</button>
+                <br>
+            </center>
+        </form>
+        <br>
+        <form action="playback" method="post">
+            {% csrf_token  %}
+            <center>
+                    <button type="submit" class="btn btn-primary btn-lg" id="btn1">Play Back Music</button>
+                <br>
+            </center>
+        </form>
+        <br>
+        <center>
+            <div class="home">
+                <a href="/">
+                    <button type="button" class="btn btn-primary btn-lg" id="btn1">Home</button>
+                </a>
+            </div>
+        </center>
+    </div>
+</body>
+</html>
